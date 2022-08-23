@@ -50,6 +50,6 @@ jobs:
           branch-suffix: short-commit-hash
           commit-message: "all: update third-party licenses"
           title: "all: update third-party licenses"
-          body: Triggered by ${{ github.sha }}
+          body: Triggered by ${{ github.repo }}@${{ github.sha }}
           delete-branch: true
           assignees: willnorris
