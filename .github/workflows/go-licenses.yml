@@ -18,6 +18,12 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v3
 
+      - name: Check out OSS code into the Go module directory
+        uses: actions/checkout@v3
+        with:
+          repository: willnorris/ts-oss
+          path: oss
+
       - name: set up a bootstrap Go toolchain
         uses: actions/setup-go@v3
         with:
@@ -32,11 +38,13 @@ jobs:
         env:
           GOFLAGS: "-tags=cgo,windows"
         run: |
-          go-licenses csv ./... > licenses.csv
+          go-licenses csv ./... > oss/licenses.csv
 
       - name: Send pull request
         uses: peter-evans/create-pull-request@v4.1.1
         with:
+          token: ${{ secrets.PR_TOKEN }}
+          path: oss
           author: License Bot <noreply@ts>
           branch: licenses/patch
           branch-suffix: short-commit-hash
