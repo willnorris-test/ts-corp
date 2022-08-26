@@ -52,10 +52,12 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
           path: tailscale
           author: License Bot <noreply@ts>
+          committer: License Bot <noreply@ts>
           branch: licenses/patch
           branch-suffix: short-commit-hash
           commit-message: "all: update third-party licenses"
           title: "all: update third-party licenses"
           body: Triggered by ${{ github.repository }}@${{ github.sha }}
+          signoff: true
           delete-branch: true
           team-reviewers: license-reviewers
